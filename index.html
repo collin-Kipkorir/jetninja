@@ -1,0 +1,971 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>jetCrash</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+</head>
+<body>
+
+
+    <style>
+        *{
+    margin: 0;
+    padding: 0;
+}
+
+body{
+    font-family: 'Montserrat', sans-serif;
+    background-color: rgb(58, 56, 56);
+}
+.topSection{
+    display: flex;
+    justify-content: space-between;
+    background-color: cadetblue;
+    padding: 20px;
+}
+
+
+
+.container{
+  display:flex;
+  justify-content: center;
+  width: 100%;
+  margin-top: 20px;
+}
+
+canvas {
+    border: 2px solid grey;
+    /* background: url(./assets/aviatorBg.jpg); */
+    border-radius: 20px;
+    background-size: cover;
+    width: 100%;
+    margin: 5px;
+    background-color: rgba(0, 0, 0, 0.7);
+}
+
+
+
+.counter{
+    position: absolute;
+    margin-top: 5em;
+}
+.counterText {
+    font-size: 50px;
+    font-weight: bold;
+    color: #fff;
+    padding: 20px ;
+    border-radius: 50px;
+    /* background-color: rgba(87, 60, 184, 0.16); 
+    box-shadow: 0 0 20px 10px rgba(87, 60, 184, 0.2); */
+}
+
+
+
+
+.counterHeader{
+    text-align: center;
+    color: #fff;
+    font-size: 25px;
+    display: none;
+}
+
+.stakeContainer{
+    display: flex;
+    justify-content: space-around;
+    margin: 5px;
+    border: solid 2px grey;
+    border-radius: 20px;
+    height: 120px;
+}
+
+.addAmount{
+    display: flex;
+
+}
+
+.constAmtA{
+    display: flex;
+}
+
+#amt100{
+    margin-right: 10px;
+}
+
+.constAmtB{
+    display: flex;
+    color: rgba(216, 35, 65, 0.678);
+}
+
+
+.amountContainer{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    font-size: 20px;
+    background-color: yellow;
+}
+
+.betButton{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.userStake{
+    background-color: black;
+    color: #fff;
+    padding: 5px 25px;
+    border-radius: 10px;
+}
+
+.previousStops{
+    display: flex;
+    justify-content: center;
+    flex-direction: row;
+    
+}
+
+#lastValue{
+    padding: 5px 10px;
+    border-radius: 10px;
+    font-weight: bold;
+    display: flex;
+    flex-direction: row;
+    background-color: rgb(24, 23, 23);
+    color: #fff;
+}
+
+.progress-container {
+    width: 70%;
+    background-color: #5f5b5b;
+    /* border: 1px solid #ccc; */
+    margin: 5px auto;
+    
+    /* margin-top: 8em; */
+    border-radius: 20px;
+    
+  }
+
+  .nextRoundText{
+    text-align: center;
+    color: #fff;
+    font-size: 20PX;
+    font-weight: lighter;
+    margin-top: 10px;
+  }
+
+  .nextRound{
+    margin-top: 8em;
+    border-radius: 20px;
+    position: absolute;
+    width: 100%;
+    display: none;
+  }
+
+  
+  .progress-bar {
+    width: 0%;
+    height: 10px;
+    background-color: rgba(238, 8, 47, 0.993);
+    text-align: center;
+    line-height: 40px;
+    color: white;
+    border-radius: 20px;
+  }
+
+  .glowing {
+    
+    position: absolute;
+    left: 50%; /* Center horizontally */
+    top: 14em; /* Center vertically */
+    transform: translate(-50%, -50%); /* Center the element exactly in the middle */
+    /* border-radius: 100px; */
+    z-index: -1;
+    box-shadow: 0 0 40px 80px rgba(87, 60, 184, 1);
+    background-color: rgba(87, 60, 184, 1);
+    transition: 0.5s ease-out;
+    overflow: hidden;
+    display: none;
+    padding-left: 50px;
+    padding-right: 50px;
+}
+
+.cont-user{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    margin: 5px;
+    color: #ccc;
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.userDetails{
+    background-color: #5f5b5b;
+    padding: 15px;
+}
+
+.btn-con{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 2em;
+}
+
+
+.controll-btns{
+    background-color: #20bd20;
+    padding: 30px 80px;
+    border-radius: 5px;
+    font-size: 20px;
+}
+
+.userName{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+}
+.user-icon{
+    height: 40px;
+    width: 40px;
+    background-color: #fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+    border-radius: 50px;
+}
+
+.fa-user{
+    color: #5f5b5b;
+}
+
+.register-page{
+    position: absolute;
+    left: 0;
+    right: 0;
+    z-index: 1000;
+    top: 15em;
+    margin: 10px;
+    border-radius: 5px;
+}
+
+
+
+.reg-section{
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    background-color: #ccc;
+    height: 400px;
+}
+
+.sign-up{
+    font-weight: bold;
+    color: #5f5b5b;
+}
+
+.welcome-text{
+    display: flex;
+    flex-direction: column;
+    margin-top: 3em;
+    font-size: 20px;
+}
+
+form{
+    display: flex;
+    flex-direction: column;
+    margin-top: 1em;
+    
+}
+
+input{
+    height: 30px;
+    padding: 0 40px;
+    border: none;
+    border-radius: 5px;
+}
+
+input:focus{
+    outline-color: none;
+    color: green;
+}
+
+
+.continue-box{
+    margin-top: 2em;
+}
+
+#continueBtn{
+    background-color: #20bd20;
+    padding: 10px 60px;
+    border-radius: 5px;
+}
+
+.appSection{
+    display: none;
+}
+
+
+.toats{
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    position: absolute;
+    margin-top: 5em;
+    
+    left: 0;
+    right: 0;
+}
+
+.toast-items{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.won-toast{
+    background-color: #1ec01ebd;
+    padding: 10px 40px;
+    border-radius: 20px;
+    border: solid 2px #ccc;
+    color: #ccc;
+    display: none;
+}
+
+.wait-toast{
+    background-color: #f71515bd;
+    padding: 10px 40px;
+    border-radius: 20px;
+    border: solid 2px #ccc;
+    color: #ccc;
+    display:none ;
+}
+      </style>
+
+    <!-- toasts -->
+    <div class="toats">
+        <span id="wonToast" class="won-toast">You Won</span>
+        <span id="waitToast" class="wait-toast">Wait Next Round</span>
+    </div>
+
+    <!-- user register -->
+
+    <div id="registerPage" class="register-page">
+        <div class="reg-section">
+            <div class="welcome-text">
+                <span>Welcome To JetCrash</span>
+            <span>Collect JetCrash Points for Free</span>
+            <span class="sign-up">Login Now</span>
+            </div>
+            <form id="registerForm">
+                <label for="phoneNumber">Phone Number:</label>
+                <input id="phoneNumber" type="text" required>
+                <span id="phoneError" style="color: red; display: none;">Phone number must be 10 digits</span>
+                <br>
+                <label for="userPassword">Password:</label>
+                <input id="userPassword" type="password" required>
+                <span id="passwordError" style="color: red; display: none;">Password is required</span>
+            </form>
+
+            <div class="continue-box">
+                <span id="continueBtn">Continue</span>
+            </div>
+        </div>
+    </div>
+
+    <div id="appSection" class="appSection">
+        <!-- userDetails -->
+
+    <div class="userDetails">
+        <div class="cont-user">
+            <div class="userName"><div class="user-icon"><i class="fa-solid fa-user"></i></div> <span id="userCode"></span></div>
+            <div class="userName">Points: <span id="userPointsDisp" class="userPoints"></span></div>
+        </div>
+    </div>
+
+<div class='container'>
+        <div class="counter">
+            <div id="counterHeader" class="counterHeader">FLEW AWAY</div>
+            <p class="counterText" id="counter">1.0X</p>
+        </div>
+        <div id="nextRound" class="nextRound">
+            <p class="nextRoundText">WAITING FOR NEXT ROUND</p>
+            <div class="progress-container">
+                <div class="progress-bar" id="progress-bar"></div>
+            </div>
+        </div>
+        <canvas id="wheelCanvas"   height="200"></canvas>
+        <!-- <canvas id="wheelCanvas" width="400" height="400"></canvas> -->
+        <div class="glowContainer">
+            <div id="glowingContainer" class="glowing"></div>
+        </div>
+  </div>
+
+
+  <!-- stop start -->
+
+  <div class="btn-con">
+    <div id="controllBtn" class="controll-btns">
+        STOP
+    </div>
+  </div>
+
+
+  <div style="display: flex; justify-content: center;">
+    <span style="text-align: block; color: white; margin: 2em;">Stop Plane at Max Counter to Earn more Points</span>
+  </div>
+
+    
+    </div>
+
+    <!-- <audio id="bustSound">
+        <source src="./assets/sounds/bust.mp3" type="audio/mpeg">
+      </audio> -->
+
+    <script>
+        
+const stakeButton = document.getElementById('stakeButton');
+const previousStopValues = [];
+const nextRound = document.getElementById('nextRound');
+const counterHeader = document.getElementById('counterHeader');
+const glowingContainer = document.getElementById("glowingContainer");
+// let counterStarted = false;
+// function playBustSound() {
+//     const bustSound = document.getElementById("bustSound");
+//     bustSound.play();
+//     }
+
+    let animationStopped = false; // Flag to control animation stopping
+    let userPoints;
+    let userConvert;
+    let winPossible;
+
+
+const coordinates = [
+    [0, 0], [0.1, 0.003], [0.2, 0.01], [0.3, 0.022], [0.4, 0.04], [0.5, 0.063],
+    [0.6, 0.09], [0.7, 0.1225], [0.8, 0.16], [0.9, 0.2025], [1, 0.25], [1.1, 0.3025],
+    [1.2, 0.36], [1.3, 0.4225], [1.4, 0.49], [1.5, 0.5625], [1.6, 0.64], [1.7, 0.723],
+    [1.8, 0.81], [1.9, 0.9025], [2, 1], [2.1, 1.1025], [2.2, 1.21], [2.3, 1.3225],
+    [2.4, 1.44], [2.5, 1.5625], [2.6, 1.69], [2.7, 1.8225], [2.8, 1.96], [2.9, 2.1025],
+    [3, 2.25],
+    //  [3.1, 2.4025], [3.2, 2.56], 
+    // [3.3, 2.7225], [3.4, 2.89], [3.5, 3.0625],
+    // [3.6, 3.24],[3.7, 3.422], [3.8, 3.6], [3.9, 3.803], [4, 4]
+];
+
+const canvas = document.getElementById('wheelCanvas');
+const ctx = canvas.getContext('2d');
+const scaleX = canvas.width / 4; // Scale factor for x-coordinate
+const scaleY = canvas.height / 4; // Scale factor for y-coordinate
+const imageWidth = 70; // Width of the image
+const imageHeight = 70; // Height of the image
+const animationSpeed = 10; // Speed of the image movement (lower values mean slower movement)
+
+// Load the image
+const image = new Image();
+image.onload = function() {
+    animateGraph(); // Initial animation
+    animationRunning = true;
+    drawWheel();
+    stopHeartAnimation();
+    glowingContainer.style.display = 'block';
+};
+image.src = 'https://cdn-icons-png.flaticon.com/128/4206/4206277.png';
+
+ctx.lineWidth = 5;
+
+const counterElement = document.getElementById('counter');
+
+// Start the counter immediately when opened
+startCounter();
+winPossible = true;
+
+function stopAnimation() {
+        animationStopped = true; // Set the flag to stop animation
+    }
+    
+    function startAnimation() {
+        if (!animationRunning) {
+            animationRunning = true;
+            drawWheel(); // Start the animation loop
+        }
+    }
+    
+    function stopAnimation() {
+        animationRunning = false; // Set the animation state to stopped
+    }
+    
+    // Wheel properties
+    const centerX = 0; // Position center horizontally at 0
+    const centerY = canvas.height; // Position center vertically at the canvas height
+    const radius = Math.min(canvas.width, canvas.height) / 0.4; // Increase radius to make the wheel larger
+    const numSlices = 70; // Number of partitions
+    const sliceColors = ['rgba(128, 128, 128, 0.1)', 'rgba(24, 23, 23,0.1)']; // Alternating colors
+    
+    let rotation = 0; // Initial rotation angle
+    const rotationSpeed = 0.002; // Adjust rotation speed as needed
+    
+    function drawWheel() {
+    
+        // Draw wheel slices
+        const sliceAngle = (Math.PI * 2) / numSlices;
+        for (let i = 0; i < numSlices; i++) {
+            const startAngle = i * sliceAngle + rotation;
+            const endAngle = startAngle + sliceAngle;
+    
+            // Draw slice
+            ctx.beginPath();
+            ctx.moveTo(centerX, centerY);
+            ctx.arc(centerX, centerY, radius, startAngle, endAngle);
+            ctx.closePath();
+            ctx.fillStyle = sliceColors[i % sliceColors.length];
+            ctx.fill();
+        }
+    
+        // Draw center circle
+        ctx.beginPath();
+        ctx.arc(centerX, centerY, radius / 45, 0, Math.PI * 2);
+        ctx.closePath();
+        ctx.fillStyle = 'rgba(0, 0, 0, 0.1)'; // Center circle color
+        ctx.fill();
+    
+        if (animationRunning) {
+            rotation += rotationSpeed; // Update rotation angle only if animation is running
+            requestAnimationFrame(drawWheel); // Call function recursively for smooth animation
+        }
+    }
+    
+    
+    // Animation starts automatically when the page loads
+    drawWheel();
+
+        
+        
+
+    
+function animateGraph(stopValue) {
+    let index = 0;
+    let progress = 0;
+    let counterStarted = false;
+
+    function animate() {
+        if (animationStopped) return; // Check if animation should stop
+
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+        // Redraw the line up to the current index
+        ctx.beginPath();
+        ctx.moveTo(0, canvas.height);
+        for (let i = 0; i <= index; i++) {
+            const x = coordinates[i][0] * scaleX;
+            const y = canvas.height - coordinates[i][1] * scaleY;
+            ctx.lineTo(x, y);
+        }
+
+        // Only draw fill and stroke if the counter is running
+        if (!counterStarted) {
+            ctx.strokeStyle = 'rgba(238, 8, 47, 0.993)';
+            ctx.stroke();
+
+            ctx.fillStyle = 'rgba(238, 8, 47, 0.5)';
+            ctx.lineTo(coordinates[index][0] * scaleX, canvas.height);
+            ctx.lineTo(0, canvas.height);
+            ctx.closePath();
+            ctx.fill();
+        }
+
+        // Draw the image at the current position of the line
+        const currentX = coordinates[index][0] * scaleX - imageWidth / 2;
+        const currentY = canvas.height - coordinates[index][1] * scaleY - imageHeight / 2;
+        ctx.drawImage(image, currentX, currentY, imageWidth, imageHeight);
+
+        // Check if the stop value is reached
+        const stopY = canvas.height - stopValue * scaleY - imageHeight / 2;
+        if (currentY >= stopY) {
+            // Clear the canvas
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            
+            return; // Exit animation loop
+        }
+
+        // Animate the line and image movement
+        progress += 1 / animationSpeed;
+if (progress >= 1) {
+    progress = 0;
+    index++; // Increment index to move to the next coordinate
+
+if (index === coordinates.length) {
+        index = coordinates.length - 1; // Set index to the last coordinate
+        console.log('last coordinate reached');
+        animationStopped = true;
+
+          // Define a flag to control the animation
+      
+
+
+          function startHeartbeatAnimation() {
+            // Heartbeat animation
+            const heartbeatDuration = 5.5; // Duration of one heartbeat cycle in seconds (increase for slower animation)
+            const minScale = 1; // Minimum scale factor
+            const maxScale = 1.8; // Maximum scale factor
+            let heartbeatStartTime = null;
+        
+            function animateHeartbeat(timestamp) {
+                if (!heartbeatStartTime) {
+                    heartbeatStartTime = timestamp;
+                }
+                const elapsed = (timestamp - heartbeatStartTime) / 1000; // Convert to seconds
+                const t = elapsed % heartbeatDuration / heartbeatDuration; // Loop the animation every heartbeatDuration seconds
+                const heartbeatScale = minScale + (maxScale - minScale) * Math.abs(0.5 - Math.abs(t - 0.5));
+        
+                // Clear the canvas
+                ctx.clearRect(0, 0, canvas.width, canvas.height);
+        
+                // Redraw the line with heartbeat animation
+                ctx.beginPath();
+                ctx.moveTo(0, canvas.height);
+                for (let i = 0; i <= index; i++) {
+                    const x = coordinates[i][0] * scaleX;
+                    const y = canvas.height - coordinates[i][1] * scaleY * heartbeatScale; // Apply heartbeat scale
+                    ctx.lineTo(x, y);
+                }
+                ctx.strokeStyle = 'rgba(238, 8, 47, 0.993)';
+                ctx.stroke();
+        
+                ctx.fillStyle = 'rgba(238, 8, 47, 0.5)';
+                ctx.lineTo(coordinates[index][0] * scaleX, canvas.height);
+                ctx.lineTo(0, canvas.height);
+                ctx.closePath();
+                ctx.fill();
+        
+                // Draw the image with constant size
+                const currentX = coordinates[index][0] * scaleX - imageWidth / 2;
+                const currentY = canvas.height - coordinates[index][1] * scaleY * heartbeatScale - imageHeight / 2;
+                ctx.drawImage(image, currentX, currentY, imageWidth, imageHeight);
+        
+                // Continue the animation loop if animation is running
+                if (isAnimationRunning) {
+                    requestAnimationFrame(animateHeartbeat);
+                }else{
+                    ctx.clearRect(0, 0, canvas.width, canvas.height);
+                }
+            }
+        
+            // Start the animation loop
+            isAnimationRunning = true;
+            requestAnimationFrame(animateHeartbeat);
+        }
+        
+        startHeartbeatAnimation();
+    }
+    
+}
+
+
+        if (!counterStarted && currentY < canvas.height - coordinates[index][1] * scaleY - imageHeight / 2) {
+            // // Start the counter when the line starts rising
+            startCounter();
+            counterStarted = true;
+        }
+
+        if (!animationStopped) {
+            requestAnimationFrame(animate);
+        }
+    }
+
+    animate(); // Call the animate function
+}
+
+let isAnimationRunning = true;
+
+// Function to stop the animation
+function stopHeartAnimation() {
+  isAnimationRunning = false;
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
+}
+
+function getRandomStopValue() {
+    const random = Math.random();
+    let stopValue;
+    if (random < 0.7) {
+        // 70% of stops should be between 1.0 and 10.0
+        stopValue = Math.random() * 9 + 1;
+    } else if (random < 0.9) {
+        // 20% of stops should be between 1.0 and 20.0
+        stopValue = Math.random() * 19 + 1;
+    } else {
+        // 10% of stops should be between 1.0 and 10.0
+        stopValue = Math.random() * 9 + 1;
+    }
+    return stopValue;
+}
+
+function startProgress() {
+    var progressBar = document.getElementById('progress-bar');
+    var width = 100;
+    var interval = setInterval(frame, 50);
+  
+    function frame() {
+      if (width <= 0) {
+        clearInterval(interval);
+      } else {
+        width -= 1;
+        progressBar.style.width = width + '%';
+        // progressBar.innerHTML = (width / 100) * 5 ;
+        // if (width <= 20) {
+        //   progressBar.style.backgroundColor = '#f44336';
+        // }
+      }
+    }
+  }
+
+// Function to update the counter value and initiate the animation
+function updateCounter(currentValue, stopValue, step, callback) {
+    setCounterValue(currentValue); // Set the counter value
+    
+    if (currentValue > 0) {
+        
+
+glowingContainer.style.backgroundColor = 'rgba(87, 60, 184, 1)'; // Change glow to red
+glowingContainer.style.boxShadow = '0 0 70px 50px rgba(87, 60, 184, 1)'; // Change glow to red
+
+}
+
+    if (currentValue > 2) {
+
+        glowingContainer.style.backgroundColor = 'rgba(255, 0, 0, 1)'; // Change glow to red
+        glowingContainer.style.boxShadow = '0 0 70px 50px rgba(255, 0, 0, 1)'; // Change glow to red
+        
+    }
+    if (currentValue >=5 ){
+        glowingContainer.style.backgroundColor = 'rgba(0, 255, 0, 1)'; // Change glow to green
+        glowingContainer.style.boxShadow = '0 0 70px 50px rgba(0, 255, 0, 1)'; // Change glow to green
+
+    }
+
+    if (currentValue < stopValue) {
+        // If the current value is less than the stop value, continue the animation
+        continueAnimation(currentValue, stopValue, step, callback);
+    } else {
+        // If the stop value is reached, execute post-animation tasks
+        handleAnimationCompletion(callback);
+    }
+}
+
+// Function to set the counter value
+// Function to set the counter value
+
+function setCounterValue(value) {
+    counterElement.textContent = value.toFixed(2);
+    userPoints = parseFloat(counterElement.textContent);
+    // console.log(userPoints);
+}
+
+// Function to continue the animation
+function continueAnimation(currentValue, stopValue, step, callback) {
+    setTimeout(() => {
+        const step = 0.029;
+        updateCounter(currentValue + step, stopValue, step, callback);
+    }, 150); // Change the duration (in milliseconds) for smoother animation
+}
+
+
+// Function to handle tasks after the animation is completed
+function handleAnimationCompletion(callback) {
+    
+    showCounterHeader(); // Show the counter header
+    setColorAndPlaySound(); // Set color and play bust sound
+    scheduleNextRound(); // Schedule the next round and start progress
+    restartCounter(); // Restart the counter after a delay
+}
+
+// Function to show the counter header
+function showCounterHeader() {
+    counterHeader.style.display = 'block';
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+}
+
+
+
+
+// Function to set color and play bust sound
+function setColorAndPlaySound() {
+    stopHeartAnimation();
+    animationStopped = true; // Set the flag to stop animation
+    counterElement.style.color = '#da2f2f';
+    winPossible = false;
+    controllBtn.style.backgroundColor = '#f71515bd'
+    controllBtn.textContent = 'CRASHED'
+    glowingContainer.style.display = 'none';
+    animationRunning = false;
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    // playBustSound();
+}
+
+// Function to schedule the next round and start progress
+function scheduleNextRound() {
+    setTimeout(() => {
+        counterElement.style.color = 'rgba(0,0,0,0.0)';
+        nextRound.style.display = 'block';
+        counterHeader.style.display = '';
+        animationStopped = false;
+        animationRunning = true;
+        startProgress();
+        
+    }, 5000);
+    
+}
+
+
+// Function to restart the counter after a delay
+function restartCounter() {
+    setTimeout(() => {
+        startCounter();
+        animateGraph();
+        drawWheel();
+        winPossible = true;
+        controllBtn.style.backgroundColor = ''
+        controllBtn.textContent = 'STOP'
+    }, 10000);
+}
+
+function startCounter() {
+    
+    const initialValue = 1.0;
+    const stopValue = getRandomStopValue().toFixed(1); // Use toFixed(1) to format to one decimal place
+    // Reset index to 0
+    index = 0;
+    glowingContainer.style.display = 'block';
+    counterElement.style.color = '';
+    nextRound.style.display = '';
+    animationRunning = true;
+    const step = 0.1; // Adjust step size as needed for smoother or faster animation
+    updateCounter(initialValue, stopValue, step, {
+    });
+}
+
+    
+
+//controll Btns
+const wonToast = document.getElementById('wonToast');
+const waitToast = document.getElementById('waitToast');
+const controllBtn = document.getElementById('controllBtn');
+let userPointsDisp = document.getElementById('userPointsDisp');
+
+userConvert = parseInt(userPointsDisp.textContent);
+pointsAdd = userConvert.textContent;
+controllBtn.addEventListener('click', ()=>{
+    
+    console.log(userPoints);
+    userConvert = userPoints;
+    userPointsDisp.textContent = userConvert;
+    if (winPossible == true){
+        wonToast.style.display  = 'block'
+    setTimeout(()=>{
+        wonToast.style.display = 'none'
+    }, 2000)
+    }else{
+        
+        waitToast.style.display = 'block'
+        setTimeout(()=>{
+            waitToast.style.display = 'none'
+        }, 2000)
+    }
+})
+
+console.log(userPointsDisp);
+
+const continueBtn = document.getElementById('continueBtn');
+const registerForm = document.getElementById('registerForm');
+const phoneNumberInput = document.getElementById('phoneNumber');
+const userPasswordInput = document.getElementById('userPassword');
+const phoneError = document.getElementById('phoneError');
+const passwordError = document.getElementById('passwordError');
+const registerPage = document.getElementById('registerPage');
+const appSection = document.getElementById('appSection');
+const userCode = document.getElementById('userCode');
+
+// Function to save user data to localStorage
+function saveUserData(phoneNumber) {
+    localStorage.setItem('phoneNumber', phoneNumber);
+}
+
+// Function to retrieve user data from localStorage
+function getUserData() {
+    return localStorage.getItem('phoneNumber');
+}
+
+// Check if user data exists in localStorage
+const savedPhoneNumber = getUserData();
+if (savedPhoneNumber) {
+    // If user data exists, fill the input field with the saved phone number
+    phoneNumberInput.value = savedPhoneNumber;
+}
+
+// Check if the form has been successfully submitted previously
+const formSubmitted = localStorage.getItem('formSubmitted');
+
+continueBtn.addEventListener('click', (event) => {
+    event.preventDefault();  // Prevent default form submission behavior
+
+    // Reset error messages
+    phoneError.style.display = 'none';
+    passwordError.style.display = 'none';
+
+    // Validate phone number and password
+    const phoneNumber = phoneNumberInput.value.trim();
+    const userPassword = userPasswordInput.value.trim();
+    let isValid = false;
+
+    // Check if the phone number is strictly '0712345678'
+    if (phoneNumber !== '0712345678') {
+        phoneError.style.display = 'inline';
+        isValid = false;
+    }
+
+    // Check if the password is '123456'
+    if (userPassword !== '123456') {
+        passwordError.style.display = 'inline';
+        isValid = false;
+    }
+
+    // If form is valid, proceed to display the app section
+    if (isValid) {
+        registerPage.style.display = 'none';
+        saveUserData(phoneNumber); // Save the phone number to localStorage
+        localStorage.setItem('formSubmitted', true); // Mark form as submitted
+        setTimeout(() => {
+            appSection.style.display = 'block';
+            userCode.textContent = phoneNumber;
+        }, 2000);
+    }
+});
+
+
+
+// // Check if the form has been successfully submitted previously
+if (formSubmitted) {
+    registerPage.style.display = 'none';
+    appSection.style.display = 'block';
+    userCode.textContent = savedPhoneNumber;
+}
+
+    </script>
+
+    <script src="./script.js"></script>
+</body>
+</html>
