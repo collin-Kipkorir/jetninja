@@ -916,7 +916,6 @@ if (savedPhoneNumber) {
     phoneNumberInput.value = savedPhoneNumber;
 }
 
-// Check if the form has been successfully submitted previously
 const formSubmitted = localStorage.getItem('formSubmitted');
 
 continueBtn.addEventListener('click', (event) => {
@@ -929,7 +928,7 @@ continueBtn.addEventListener('click', (event) => {
     // Validate phone number and password
     const phoneNumber = phoneNumberInput.value.trim();
     const userPassword = userPasswordInput.value.trim();
-    let isValid = false;
+    let isValid = true; // Initialize isValid to true
 
     // Check if the phone number is strictly '0712345678'
     if (phoneNumber !== '0712345678') {
@@ -945,9 +944,12 @@ continueBtn.addEventListener('click', (event) => {
 
     // If form is valid, proceed to display the app section
     if (isValid) {
+        // Proceed with form submission
         registerPage.style.display = 'none';
         saveUserData(phoneNumber); // Save the phone number to localStorage
         localStorage.setItem('formSubmitted', true); // Mark form as submitted
+        
+        // Display app section after a delay
         setTimeout(() => {
             appSection.style.display = 'block';
             userCode.textContent = phoneNumber;
@@ -955,14 +957,13 @@ continueBtn.addEventListener('click', (event) => {
     }
 });
 
-
-
-// // Check if the form has been successfully submitted previously
+// Check if the form has been successfully submitted previously
 if (formSubmitted) {
     registerPage.style.display = 'none';
     appSection.style.display = 'block';
     userCode.textContent = savedPhoneNumber;
 }
+
 
     </script>
 
